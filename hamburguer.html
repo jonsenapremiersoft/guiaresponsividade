@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Hamburguer com CSS</title>
+    <style>
+        /* Reset básico */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Estilos base */
+        .header {
+            background: #333;
+            padding: 1rem;
+            position: relative;
+        }
+
+        .nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            z-index: 2;
+        }
+
+        /* Esconde o checkbox */
+        #menu-toggle {
+            display: none;
+        }
+
+        /* Estilo do botão hamburguer */
+        .menu-btn {
+            display: none; /* Inicialmente oculto */
+            cursor: pointer;
+            padding: 0.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .menu-btn span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 5px 0;
+            transition: 0.3s;
+        }
+
+        /* Estilo do menu */
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: #ffd700;
+        }
+
+        /* Media query para mobile */
+        @media screen and (max-width: 768px) {
+            .menu-btn {
+                display: block; /* Mostra o botão hamburguer */
+            }
+
+            .nav-menu {
+                display: none; /* Esconde o menu */
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: #333;
+                flex-direction: column;
+                padding: 1rem;
+                text-align: center;
+            }
+
+            /* Quando o checkbox estiver marcado, mostra o menu */
+            #menu-toggle:checked ~ .nav-menu {
+                display: flex;
+            }
+
+            /* Animação do botão hamburguer */
+            #menu-toggle:checked ~ .menu-btn span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+
+            #menu-toggle:checked ~ .menu-btn span:nth-child(2) {
+                opacity: 0;
+            }
+
+            #menu-toggle:checked ~ .menu-btn span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -6px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">Logo</div>
+            
+            <!-- Checkbox escondido para controlar o menu -->
+            <input type="checkbox" id="menu-toggle">
+            
+            <!-- Label que funciona como botão hamburguer -->
+            <label for="menu-toggle" class="menu-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+
+            <!-- Menu de Navegação -->
+            <ul class="nav-menu">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Produtos</a></li>
+                <li><a href="#">Sobre</a></li>
+                <li><a href="#">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+</body>
+</html>
